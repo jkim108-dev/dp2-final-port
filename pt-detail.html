@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Portable Battery</title>
+
+  <!-- FONT -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:#070707;
+      color:#f5f5f5;
+      font-family:'Inter',sans-serif;
+      overflow-x:hidden;
+    }
+
+    img{
+      display:block;
+      width:100%;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    /* =========================
+       NAV
+    ========================== */
+
+    .nav{
+      position:fixed;
+
+      top:0;
+      left:0;
+
+      width:100%;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      padding:2rem 4vw;
+
+      z-index:100;
+
+      backdrop-filter:blur(10px);
+
+      background:rgba(0,0,0,0.2);
+    }
+
+    .logo{
+      font-size:0.8rem;
+      letter-spacing:0.2em;
+      text-transform:uppercase;
+
+      color:rgba(255,255,255,0.7);
+    }
+
+    .back-button{
+      padding:0.8rem 1.4rem;
+
+      border:1px solid rgba(255,255,255,0.12);
+      border-radius:999px;
+
+      font-size:0.75rem;
+      letter-spacing:0.15em;
+      text-transform:uppercase;
+
+      transition:0.4s ease;
+    }
+
+    .back-button:hover{
+      background:#f5f5f5;
+      color:#070707;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero{
+      width:100%;
+      min-height:100vh;
+
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+
+      padding:12rem 8vw 6rem 8vw;
+    }
+
+    .hero-label{
+      font-size:0.8rem;
+      letter-spacing:0.2em;
+      text-transform:uppercase;
+
+      color:rgba(255,255,255,0.4);
+
+      margin-bottom:2rem;
+    }
+
+    .hero-title{
+      font-size:clamp(4rem,10vw,9rem);
+      line-height:0.9;
+      letter-spacing:-0.07em;
+
+      margin-bottom:2rem;
+    }
+
+    .hero-description{
+      max-width:700px;
+
+      font-size:1.1rem;
+      line-height:1.9;
+
+      color:rgba(255,255,255,0.7);
+
+      margin-bottom:5rem;
+    }
+
+    .hero-image{
+      width:100%;
+      height:auto;
+
+      border-radius:32px;
+    }
+
+    /* =========================
+       SECTION
+    ========================== */
+
+    .detail-section{
+      padding:0 8vw 10rem 8vw;
+    }
+
+    .section-header{
+      margin-bottom:4rem;
+    }
+
+    .section-subtitle{
+      font-size:0.8rem;
+      letter-spacing:0.2em;
+      text-transform:uppercase;
+
+      color:rgba(255,255,255,0.35);
+
+      margin-bottom:1rem;
+    }
+
+    .section-title{
+      font-size:clamp(2.5rem,5vw,5rem);
+      letter-spacing:-0.05em;
+    }
+
+    .section-description{
+      margin-top:1.5rem;
+
+      max-width:750px;
+
+      font-size:1rem;
+      line-height:1.9;
+
+      color:rgba(255,255,255,0.65);
+    }
+
+    /* =========================
+       DETAIL GALLERY
+    ========================== */
+
+    .detail-gallery{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:2rem;
+    }
+
+    .detail-gallery img{
+      width:100%;
+      height:500px;
+
+      object-fit:contain;
+
+      border-radius:28px;
+
+      background:#111;
+
+      transition:0.5s ease;
+    }
+
+    .detail-gallery img:hover{
+      transform:translateY(-8px);
+    }
+
+    /* =========================
+       PROCESS
+    ========================== */
+
+    .process-gallery{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:2rem;
+    }
+
+    .process-gallery img{
+      width:100%;
+      height:500px;
+
+      object-fit:contain;
+
+      border-radius:28px;
+
+      background:#111;
+
+      transition:0.5s ease;
+    }
+
+    .process-gallery img:hover{
+      transform:translateY(-8px);
+    }
+
+    .process-main{
+      grid-column:1 / -1;
+
+      height:700px !important;
+    }
+
+    /* =========================
+       SKETCH
+    ========================== */
+
+    .sketch-section{
+      padding:0 8vw 12rem 8vw;
+    }
+
+    .sketch-gallery{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:2rem;
+    }
+
+    .sketch-gallery img{
+      width:100%;
+
+      border-radius:28px;
+
+      background:#111;
+
+      transition:0.5s ease;
+    }
+
+    .sketch-gallery img:hover{
+      transform:translateY(-8px);
+    }
+
+    .sketch-main{
+      grid-column:1 / -1;
+
+      width:100%;
+      height:auto;
+
+      object-fit:contain;
+
+      padding:2rem;
+    }
+
+    .sketch-small{
+      width:100%;
+      aspect-ratio:1 / 1;
+
+      object-fit:contain;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media(max-width:900px){
+
+      .detail-gallery,
+      .process-gallery,
+      .sketch-gallery{
+        grid-template-columns:1fr;
+      }
+
+      .process-main,
+      .sketch-main{
+        grid-column:span 1;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- NAV -->
+
+  <nav class="nav">
+
+    <div class="logo">
+      JAY KIM
+    </div>
+
+    <a href="index.html" class="back-button">
+      Back
+    </a>
+
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-label">
+      Featured Project
+    </div>
+
+    <h1 class="hero-title">
+      Portable<br>
+      Battery
+    </h1>
+
+    <p class="hero-description">
+      Experimental exploration combining East Asian
+      painting aesthetics, atmospheric studies,
+      and material-based visual processes.
+    </p>
+
+  </section>
+
+  <!-- ASIAN SERIES -->
+
+  <section class="detail-section">
+
+    <div class="section-header">
+
+      <div class="section-subtitle">
+        East Asian Painting
+      </div>
+
+      <h2 class="section-title">
+        Asian Painting Series
+      </h2>
+
+      <p class="section-description">
+
+        This work originated from the emotion of anxiety.
+        When I was living in Korea, I often had a habit
+        of climbing the mountain behind my house whenever
+        I felt worried or emotionally overwhelmed,
+        using nature as a way to calm my mind
+        and regain stability.
+
+        <br><br>
+
+        While studying in the United States,
+        I began to connect the various anxieties
+        and pressures of adapting to a new environment
+        with this personal habit from Korea.
+
+        This project was created as a visual exploration
+        of that emotional connection,
+        reflecting both psychological tension
+        and the sense of comfort and balance
+        found in nature.
+
+      </p>
+
+    </div>
+
+    <div class="detail-gallery">
+
+      <img src="pt/asian1.jpeg">
+      <img src="pt/asian2.jpeg">
+
+    </div>
+
+  </section>
+
+  <!-- CLOUD SERIES -->
+
+  <section class="detail-section">
+
+    <div class="section-header">
+
+      <div class="section-subtitle">
+        Atmosphere Study
+      </div>
+
+      <h2 class="section-title">
+        Cloud Series
+      </h2>
+
+      <p class="section-description">
+
+        This work began from the feeling of burnout.
+        Coming to the United States for the first time,
+        I often experienced burnout due to unfamiliar
+        language, culture, and the challenges of adapting
+        to a completely new environment.
+
+        <br><br>
+
+        Whenever I felt exhausted or discouraged,
+        I would spend time on LinkedIn looking through
+        other people’s careers and projects,
+        imagining my own future and regaining motivation
+        through their journeys.
+
+        <br><br>
+
+        Because of this experience,
+        LinkedIn gradually came to feel comforting to me,
+        almost like soft clouds that offered emotional
+        support and hope.
+
+        Inspired by that personal feeling,
+        I expressed the idea through cloud-like forms,
+        translating emotional comfort and aspiration
+        into a visual and physical representation.
+
+      </p>
+
+    </div>
+
+    <div class="detail-gallery">
+
+      <img src="pt/cloud1.jpeg">
+      <img src="pt/cloud2.jpeg">
+
+    </div>
+
+  </section>
+
+  <!-- MAKING PROCESS -->
+
+  <section class="detail-section">
+
+    <div class="section-header">
+
+      <div class="section-subtitle">
+        Material Process
+      </div>
+
+      <h2 class="section-title">
+        Making Process
+      </h2>
+
+    </div>
+
+    <div class="process-gallery">
+
+      <img
+        src="pt/making1.jpeg"
+        class="process-main"
+      >
+
+      <img src="pt/making2.jpeg">
+
+      <img src="pt/making3.jpeg">
+
+    </div>
+
+  </section>
+
+  <!-- SKETCH -->
+
+  <section class="sketch-section">
+
+    <div class="section-header">
+
+      <div class="section-subtitle">
+        Process Archive
+      </div>
+
+      <h2 class="section-title">
+        Sketch Exploration
+      </h2>
+
+    </div>
+
+    <div class="sketch-gallery">
+
+      <img
+        src="pt/sketch1.jpg"
+        class="sketch-main"
+      >
+
+      <img src="pt/sketch2.jpg" class="sketch-small">
+      <img src="pt/sketch3.jpg" class="sketch-small">
+
+      <img src="pt/sketch4.jpg" class="sketch-small">
+      <img src="pt/sketch5.jpg" class="sketch-small">
+
+      <img src="pt/sketch6.jpg" class="sketch-small">
+      <img src="pt/sketch7.jpg" class="sketch-small">
+
+      <img src="pt/sketch8.jpg" class="sketch-small">
+      <img src="pt/sketch9.jpg" class="sketch-small">
+
+      <img src="pt/sketch10.jpg" class="sketch-small">
+      <img src="pt/sketch11.jpg" class="sketch-small">
+      <img src="pt/sketch12.jpg" class="sketch-small">
+
+    </div>
+
+  </section>
+
+</body>
+</html>
