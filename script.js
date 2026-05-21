@@ -70,3 +70,49 @@ sliders.forEach((slider) => {
   }, 3200);
 
 });
+// =========================
+// ABOUT MODAL
+// =========================
+
+const aboutButton =
+document.getElementById('aboutButton');
+
+const aboutOverlay =
+document.getElementById('aboutOverlay');
+
+const closeAbout =
+document.getElementById('closeAbout');
+
+// OPEN
+
+aboutButton.addEventListener('click', () => {
+
+  aboutOverlay.classList.add('active');
+
+  document.body.style.overflow = 'hidden';
+
+});
+
+// CLOSE BUTTON
+
+closeAbout.addEventListener('click', () => {
+
+  aboutOverlay.classList.remove('active');
+
+  document.body.style.overflow = 'auto';
+
+});
+
+// CLICK OUTSIDE
+
+aboutOverlay.addEventListener('click', (e) => {
+
+  if(e.target === aboutOverlay){
+
+    aboutOverlay.classList.remove('active');
+
+    document.body.style.overflow = 'auto';
+
+  }
+
+});
