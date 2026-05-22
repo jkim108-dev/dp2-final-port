@@ -809,3 +809,6 @@ object-position: bottom 40%;
   min-height:480px;
   
 }
+.hidden {
+  display: none;
+}
