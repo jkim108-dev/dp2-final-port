@@ -4,3 +4,5 @@
 .archive-mobile{display:block;width:min(100%,430px);height:auto;max-height:none;margin:32px auto 0;border-radius:22px;border:1px solid #303030}
 
 .acoustic-render-gallery{display:grid;gap:28px}.acoustic-render-gallery img{display:block;width:100%;height:auto;border-radius:20px}
+
+.documentation h2{margin-top:64px}.doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:30px 0 50px;align-items:start}.doc-figure{margin:0;min-width:0}.doc-figure img{width:100%;height:auto;display:block;border-radius:12px}.doc-figure figcaption{font-size:13px;color:#999;line-height:1.6;margin-top:12px}.doc-wide{grid-column:1/-1}@media(max-width:700px){.doc-grid{grid-template-columns:1fr}.doc-wide{grid-column:auto}}
