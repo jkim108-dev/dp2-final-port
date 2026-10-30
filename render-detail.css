@@ -489,3 +489,22 @@ a{
 
   display:block;
 }
+
+/* Charging context photographs */
+.charging-context-copy{
+  margin-top:1.5rem;
+}
+.charging-context-grid{
+  grid-template-columns:minmax(0,1fr);
+  gap:2.5rem;
+}
+.charging-context-grid img{
+  display:block;
+  height:auto;
+}
+.charging-context-grid figcaption{
+  margin-top:1rem;
+  color:rgba(255,255,255,0.55);
+  font-size:0.8rem;
+  line-height:1.6;
+}
