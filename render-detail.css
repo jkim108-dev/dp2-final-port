@@ -117,3 +117,16 @@ figcaption{font-size:12px;line-height:1.65;color:var(--muted);margin-top:14px}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}.scroll-video-section{height:auto}.sticky-video-container{position:relative;top:auto;height:auto;min-height:300px}.motion-hud{display:none}#scrollVideo{height:auto;min-height:260px;max-height:85vh}
 }
+
+/* Image-only, reversible scroll reveals. Captions keep their normal contrast. */
+[data-scroll-reveal].scroll-reveal-ready > img {
+  opacity: var(--reveal-opacity, 1);
+  transform: translate3d(0, var(--reveal-shift, 0px), 0) scale(var(--reveal-scale, 1));
+  transform-origin: center center;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-scroll-reveal].scroll-reveal-ready > img {
+    opacity: 1;
+    transform: none;
+  }
+}

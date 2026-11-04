@@ -23,6 +23,52 @@
     });
   });
 
+  // Tie still-image visibility to position, so scrolling back reverses the reveal.
+  const revealImages = [...document.querySelectorAll('[data-scroll-reveal]')];
+  const revealPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let revealFrame = 0;
+  const clamp = value => Math.max(0, Math.min(1, value));
+  const soften = value => value * value * (3 - 2 * value);
+
+  function renderReveals() {
+    revealFrame = 0;
+    const height = window.innerHeight;
+    const navHeight = document.querySelector('.product-nav')?.offsetHeight || 0;
+    // Read stable figure bounds before writing transforms to their images.
+    const states = revealImages.map(figure => {
+      const rect = figure.getBoundingClientRect();
+      const enter = soften(clamp((height - rect.top) / (height * 0.32)));
+      const leave = soften(clamp((rect.bottom - navHeight) / (height * 0.25)));
+      const visible = revealPreference.matches ? 1 : Math.min(enter, leave);
+      return {
+        figure,
+        opacity: visible.toFixed(3),
+        shift: revealPreference.matches ? '0px' : `${((1 - enter) * 30 - (1 - leave) * 14).toFixed(2)}px`,
+        scale: revealPreference.matches ? '1' : (0.98 + visible * 0.02).toFixed(4),
+      };
+    });
+    states.forEach(({figure, opacity, shift, scale}) => {
+      figure.style.setProperty('--reveal-opacity', opacity);
+      figure.style.setProperty('--reveal-shift', shift);
+      figure.style.setProperty('--reveal-scale', scale);
+      figure.classList.add('scroll-reveal-ready');
+    });
+  }
+  function requestReveals() {
+    if (!revealFrame) revealFrame = requestAnimationFrame(renderReveals);
+  }
+  if (revealImages.length) {
+    window.addEventListener('scroll', requestReveals, { passive: true });
+    window.addEventListener('resize', requestReveals, { passive: true });
+    window.addEventListener('load', requestReveals, { once: true });
+    revealPreference.addEventListener('change', requestReveals);
+    revealImages.forEach(figure => {
+      figure.querySelector('img')?.addEventListener('load', requestReveals, { once: true });
+    });
+    requestReveals();
+  }
+
+
   const video = document.getElementById('scrollVideo');
   const section = document.querySelector('.scroll-video-section');
   const sticky = document.querySelector('.sticky-video-container');
